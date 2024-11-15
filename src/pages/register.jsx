@@ -79,7 +79,7 @@ function register() {
       axios.post(Api_url + "register/", requestBody)
         .then(function (response) {
           console.log(response);
-          if (response.data.status === 200) {
+          if (response.data.status ==2) {
             toast.success("Registration Successful");
             setTimeout(() => {
               navigate("/login");
