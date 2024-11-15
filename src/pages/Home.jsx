@@ -60,7 +60,7 @@ const load_course = () => {
     .then(res => {
         console.log(res.data);
         setCourse(res.data);
-        setIsload(6);
+        setIsload(isload+1);
     })
     .catch(err => {
         console.log(err);
@@ -69,7 +69,11 @@ const load_course = () => {
 
 const add_courses = (value,method) => {
     if(method == "added"){
- 
+   const cours_already_added = addedCourses.filter(item => item.course_id == value.course_id);
+        if(cours_already_added.length > 0){
+            toast.error("Course already added");
+            return;
+        }
   //create functon the number to convert to string
   const convertToString = (num) => {
     return num.toString();
@@ -86,7 +90,7 @@ const add_courses = (value,method) => {
       console.log(res.data.status);
       if (res.data.status == 2) {
             toast.success(res.data.message);
-            setIsload(1);
+            setIsload(isload+1);
       }
     })
     .catch((err) => {
@@ -111,7 +115,7 @@ const cours ={
       console.log(res.data.status);
       if (res.data.status == 2) {
             toast.success("Course Deleted");
-            setIsload(2);
+            setIsload(isload+1);
       }
     })
     .catch((err) => {
